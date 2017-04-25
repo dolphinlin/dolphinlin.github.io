@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Dolphin雜事筆記</title>
+  <title>JavaScript 設計模型 - Chain of Responsibility | Dolphin雜事筆記</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Dolphin雜事筆記">
-<meta property="og:url" content="https://dolphinlin.github.io/myblog/index.html">
+  <meta name="description" content="由於室友的物件導向軟體開發正在重修，想說有空可以去旁聽，順便複習一下以前所學的，正好正在教Chain of Responsibility，最近又因為正在學Angular，所以剛好有接觸TypeScript，所以就想說能不能應用上去，寫一寫發現真的還蠻有趣的，所以以後應該會慢慢地去實作其他的Pattern，順便讓我更增強自己的維護性。手上也有一本JavasScript Design Pattern這">
+<meta name="keywords" content="javascript,DesignPattern,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 設計模型 - Chain of Responsibility">
+<meta property="og:url" content="https://dolphinlin.github.io/myblog/2017/04/25/JS-DesignPattern-COR/index.html">
 <meta property="og:site_name" content="Dolphin雜事筆記">
+<meta property="og:description" content="由於室友的物件導向軟體開發正在重修，想說有空可以去旁聽，順便複習一下以前所學的，正好正在教Chain of Responsibility，最近又因為正在學Angular，所以剛好有接觸TypeScript，所以就想說能不能應用上去，寫一寫發現真的還蠻有趣的，所以以後應該會慢慢地去實作其他的Pattern，順便讓我更增強自己的維護性。手上也有一本JavasScript Design Pattern這">
+<meta property="og:updated_time" content="2017-04-25T09:06:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dolphin雜事筆記">
+<meta name="twitter:title" content="JavaScript 設計模型 - Chain of Responsibility">
+<meta name="twitter:description" content="由於室友的物件導向軟體開發正在重修，想說有空可以去旁聽，順便複習一下以前所學的，正好正在教Chain of Responsibility，最近又因為正在學Angular，所以剛好有接觸TypeScript，所以就想說能不能應用上去，寫一寫發現真的還蠻有趣的，所以以後應該會慢慢地去實作其他的Pattern，順便讓我更增強自己的維護性。手上也有一本JavasScript Design Pattern這">
   
     <link rel="alternate" href="/atom.xml" title="Dolphin雜事筆記" type="application/atom+xml">
   
@@ -63,9 +68,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-JS-DesignPattern-COR" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-JS-DesignPattern-COR" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/myblog/2017/04/25/JS-DesignPattern-COR/" class="article-date">
   <time datetime="2017-04-25T08:07:37.000Z" itemprop="datePublished">2017-04-25</time>
@@ -78,8 +81,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/myblog/2017/04/25/JS-DesignPattern-COR/">JavaScript 設計模型 - Chain of Responsibility</a>
+    <h1 class="article-title" itemprop="name">
+      JavaScript 設計模型 - Chain of Responsibility
     </h1>
   
 
@@ -111,161 +114,23 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-mac-laravel-install" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/myblog/2017/04/20/mac-laravel-install/" class="article-date">
-  <time datetime="2017-04-20T05:54:43.000Z" itemprop="datePublished">2017-04-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/myblog/2017/04/20/mac-laravel-install/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myblog/2017/04/20/mac-laravel-install/">MacOS 安裝、使用Laravel</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最一開始寫網頁是接觸php，然後是使用ubuntu做開發，之後存了一點小錢買了一台mac然後就比較少在寫php了，大部分的時間都在研究JS，最近又心血來潮想寫寫PHP，而且Laravel也與我最愛的Vue.js整合了！這真是一個不錯的契機！所以就邊安裝邊寫一篇心得文，讓有需要入坑的朋友可以參考參考。</p>
-<h2 id="起手"><a href="#起手" class="headerlink" title="起手"></a>起手</h2><p>由於Laravel的PHP版本比較高，所以我們先安裝PHP 7.0 以上的版本，以下我用7.1做範例。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl <span class="_">-s</span> http://php-osx.liip.ch/install.sh | bash <span class="_">-s</span> 7.1</div></pre></td></tr></table></figure>
-<p>安裝會需要一些時間！安裝完查看php版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -v</div></pre></td></tr></table></figure></p>
-<p>因為mac有預設安裝php，可是版本很低，假如安裝完之後版本還是舊的，那就要修改path，下面會以zsh為範例。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 將下行加入到.zshrc裡</span></div><div class="line"><span class="built_in">export</span> <span class="string">"PATH=/usr/local/php5/bin:<span class="variable">$PATH</span>"</span></div><div class="line"></div><div class="line"><span class="comment"># 在command line裡面重新載入zshrc</span></div><div class="line"><span class="built_in">source</span> ~/.zshrc</div></pre></td></tr></table></figure></p>
-<p>source完畢之後再看看PHP的版本，正常來說會是7.1！</p>
-<h2 id="安裝-Composer"><a href="#安裝-Composer" class="headerlink" title="安裝 Composer"></a>安裝 <a href="https://getcomposer.org/" target="_blank" rel="external">Composer</a></h2><p>官方介紹</p>
-<blockquote>
-<p>Composer is a tool for dependency management in PHP. It allows you to declare the libraries your project depends on and it will manage (install/update) them for you.</p>
-</blockquote>
-<p>安裝方法很簡單，只需要輸入下列指令就可以囉！<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl <span class="_">-s</span>S https://getcomposer.org/installer | php</div></pre></td></tr></table></figure></p>
-<p>安裝完之後還需要把Composer移動到path裡面，這樣在command line裡面才會有composer指令！<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</div></pre></td></tr></table></figure></p>
-<h2 id="安裝-Laravel"><a href="#安裝-Laravel" class="headerlink" title="安裝 Laravel"></a>安裝 <a href="https://laravel.com/docs/5.4/installation" target="_blank" rel="external">Laravel</a></h2><p>重頭戲來啦～安裝Laravel，我們將使用Composer來作安裝！</p>
-<p>指令如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer global require <span class="string">"laravel/installer"</span></div></pre></td></tr></table></figure></p>
-<p>安裝完之後需要加入到path裡面，不然會每次都需要打一大串喔！<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 將下行加入到.zshrc裡</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/.composer/vendor/bin"</span></div><div class="line"></div><div class="line"><span class="comment"># 在command line裡面重新載入zshrc</span></div><div class="line"><span class="built_in">source</span> ~/.zshrc</div><div class="line"></div><div class="line"><span class="comment"># 如不加入到path，則要使用的話需要打下列指令。</span></div><div class="line">composer create-project --prefer-dist laravel/laravel blog</div></pre></td></tr></table></figure></p>
-<p>這樣就大功告成啦！！之後可以看著官方的getting start慢慢動手做囉！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://dolphinlin.github.io/myblog/2017/04/20/mac-laravel-install/" data-id="cj1xa648x00045o0m74jckmj0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/myblog/tags/MacOS/">MacOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/myblog/tags/laravel/">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/myblog/tags/php/">php</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-dont-need-jquery-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/myblog/2017/04/16/dont-need-jquery-1/" class="article-date">
-  <time datetime="2017-04-16T06:56:50.000Z" itemprop="datePublished">2017-04-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          MacOS 安裝、使用Laravel
         
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/myblog/2017/04/16/dont-need-jquery-1/">不需要JQuery #1</a>
-    </h1>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>隨著時代的推進，瀏覽器的進步神速，網頁的崛起。在這個愈來愈講究使用者體驗(UX)的時代，效能是一大重點，以前撰寫網頁的時候常常會使用JQuery，來控制元素，但是現在已經不同了，反而愈來愈追求原生的JS。<br>  <a href="https://segmentfault.com/a/1190000000355277" target="_blank" rel="external">Vanilla JS——世界上最轻量的JavaScript框架（没有之一）</a></p>
-<hr>
-<h2 id="Selector"><a href="#Selector" class="headerlink" title="Selector"></a>Selector</h2><p>元素選擇器</p>
-<h3 id="JQuery"><a href="#JQuery" class="headerlink" title="JQuery"></a>JQuery</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.class #id'</span>)</div></pre></td></tr></table></figure>
-<h3 id="Vanilla-JS"><a href="#Vanilla-JS" class="headerlink" title="Vanilla JS"></a>Vanilla JS</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.querySelector(<span class="string">'.class #id'</span>)</div><div class="line"><span class="built_in">document</span>.body.querySelectorAll(<span class="string">'.class #id'</span>)</div><div class="line"></div><div class="line"><span class="built_in">document</span>.body.getElementById(<span class="string">'id'</span>)</div><div class="line"><span class="built_in">document</span>.body.getElementsByTagName(<span class="string">'tagName'</span>)</div><div class="line"><span class="built_in">document</span>.body.getElementsByClassName(<span class="string">'class'</span>)</div></pre></td></tr></table></figure>
-<p>querySelector 與 getElement 最大差別就是前者無法抓取動態產生之元素，後者可以。<br>詳情可見 &gt;<br>  <a href="https://www.ptt.cc/bbs/Web_Design/M.1491563726.A.508.html" target="_blank" rel="external">Fw: [心得] 都2017年了  學學用原生JS來操作DOM吧</a></p>
-<hr>
-<h2 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h2><p>事件</p>
-<h3 id="JQuery-1"><a href="#JQuery-1" class="headerlink" title="JQuery"></a>JQuery</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'dom'</span>).click(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h3 id="Vanilla-JS-1"><a href="#Vanilla-JS-1" class="headerlink" title="Vanilla JS"></a>Vanilla JS</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.querySelector(<span class="string">'dom'</span>).addEventListener(<span class="string">'click'</span>, (e) =&gt; &#123;</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="Animate"><a href="#Animate" class="headerlink" title="Animate"></a>Animate</h2><p>動畫</p>
-<h3 id="JQuery-2"><a href="#JQuery-2" class="headerlink" title="JQuery"></a>JQuery</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'dom'</span>).animate(&#123;</div><div class="line">  <span class="attr">scrollTop</span>: <span class="number">0</span></div><div class="line">&#125;, <span class="number">500</span>)</div></pre></td></tr></table></figure>
-<h3 id="Vanilla-JS-2"><a href="#Vanilla-JS-2" class="headerlink" title="Vanilla JS"></a>Vanilla JS</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> si = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.body.scrollTop &lt;= <span class="number">10</span>) &#123;</div><div class="line">    <span class="built_in">document</span>.body.scrollTop = <span class="number">0</span></div><div class="line">    clearInterval(si)</div><div class="line">    <span class="keyword">return</span></div><div class="line">  &#125;</div><div class="line">  <span class="built_in">document</span>.body.scrollTop -= <span class="number">10</span></div><div class="line">&#125;, <span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="comment">// 下方效能較佳</span></div><div class="line"></div><div class="line"><span class="built_in">window</span>.requestAnimationFrame(<span class="function"><span class="keyword">function</span> <span class="title">sc</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">document</span>.body.scrollTop -= <span class="built_in">document</span>.body.scrollTop / <span class="number">10</span></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.body.scrollTop &gt; <span class="number">5</span>) &#123;</div><div class="line">    <span class="built_in">window</span>.requestAnimationFrame(sc)</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">document</span>.body.scrollTop = <span class="number">0</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://dolphinlin.github.io/myblog/2017/04/16/dont-need-jquery-1/" data-id="cj1xa648r00015o0mwn8ka3hg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/myblog/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/myblog/tags/jquery/">jquery</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/myblog/2017/04/16/hello-world/" class="article-date">
-  <time datetime="2017-04-16T06:36:02.000Z" itemprop="datePublished">2017-04-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/myblog/2017/04/16/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://dolphinlin.github.io/myblog/2017/04/16/hello-world/" data-id="cj1xa648w00035o0m54vrymbl" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 </section>
         
