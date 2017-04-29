@@ -6,7 +6,7 @@
   <title>JavaScript 設計模型 - Composite | Dolphin雜事筆記</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="原本是想要寫Decorator，但是發現他有點Composite Pattern的基礎，所以就想說先寫這個Pattern！這個Pattern，可以使我們的Code能夠更組件化！能夠大大提升組件的覆用性，現在許多的前端框架也主打擁有Component，就像是樂高積木一樣，組起來就好！ 起手式『Composition over inheritance』雖然這句話是在物件導向比較適用，因為JS是FP不是">
-<meta name="keywords" content="DesignPattern,js,JavaScript,TypeScript">
+<meta name="keywords" content="JavaScript,TypeScript,DesignPattern,js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 設計模型 - Composite">
 <meta property="og:url" content="https://dolphinlin.github.io/myblog/2017/04/26/JS-DesignPattern-Composite/index.html">
@@ -59,7 +59,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://dolphinlin.github.io/myblog"></form>
@@ -99,7 +99,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://dolphinlin.github.io/myblog/2017/04/26/JS-DesignPattern-Composite/" data-id="cj1ydwfj80000330mo556jkck" class="article-share-link">Share</a>
+      <a data-url="https://dolphinlin.github.io/myblog/2017/04/26/JS-DesignPattern-Composite/" data-id="cj23f9w290004220m55v16o3s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/myblog/tags/DesignPattern/">DesignPattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/myblog/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/myblog/tags/TypeScript/">TypeScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/myblog/tags/js/">js</a></li></ul>
@@ -120,6 +120,11 @@
     </a>
   
   
+    <a href="/myblog/2017/04/29/JS-DesignPattern-Iterator/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript 設計模型 - Chain of Responsibility</div>
+    </a>
+  
 </nav>
 
   
@@ -134,7 +139,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">標籤</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/myblog/tags/DesignPattern/">DesignPattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/myblog/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/myblog/tags/MacOS/">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/myblog/tags/TypeScript/">TypeScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/myblog/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/myblog/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/myblog/tags/laravel/">laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/myblog/tags/php/">php</a></li></ul>
     </div>
@@ -144,7 +149,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">標籤雲</h3>
     <div class="widget tagcloud">
       <a href="/myblog/tags/DesignPattern/" style="font-size: 15px;">DesignPattern</a> <a href="/myblog/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/myblog/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/myblog/tags/TypeScript/" style="font-size: 15px;">TypeScript</a> <a href="/myblog/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/myblog/tags/js/" style="font-size: 15px;">js</a> <a href="/myblog/tags/laravel/" style="font-size: 10px;">laravel</a> <a href="/myblog/tags/php/" style="font-size: 10px;">php</a>
     </div>
@@ -153,9 +158,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Arkiv</h3>
+    <h3 class="widget-title">彙整</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/myblog/archives/2017/04/">April 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/myblog/archives/2017/04/">四月 2017</a></li></ul>
     </div>
   </div>
 
@@ -163,9 +168,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Siste innlegg</h3>
+    <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/myblog/2017/04/29/JS-DesignPattern-Iterator/">JavaScript 設計模型 - Chain of Responsibility</a>
+          </li>
         
           <li>
             <a href="/myblog/2017/04/26/JS-DesignPattern-Composite/">JavaScript 設計模型 - Composite</a>
@@ -181,10 +190,6 @@
         
           <li>
             <a href="/myblog/2017/04/16/dont-need-jquery-1/">不需要JQuery #1</a>
-          </li>
-        
-          <li>
-            <a href="/myblog/2017/04/16/hello-world/">Hello World</a>
           </li>
         
       </ul>
