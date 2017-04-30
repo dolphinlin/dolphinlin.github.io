@@ -63,17 +63,17 @@ NexT.utils = NexT.$u = {
     $(window).on('scroll', function () {
       $top.toggleClass('back-to-top-on', window.pageYOffset > THRESHOLD);
 
-      var scrollTop = $(window).scrollTop();
-      var docHeight = $('#content').height();
-      var winHeight = $(window).height();
-      var contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight);
-      var scrollPercent = (scrollTop) / (contentMath);
-      var scrollPercentRounded = Math.round(scrollPercent*100);
-      var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
-      $('#scrollpercent>span').html(scrollPercentMaxed);
-      // let percent = Number(document.body.scrollTop) / Number(document.body.scrollHeight - window.innerHeight)
-      // document.body.querySelector('.headband')
-      //   .style.width = `${percent * 100}%`
+      // var scrollTop = $(window).scrollTop();
+      // var docHeight = $('#content').height();
+      // var winHeight = $(window).height();
+      // var contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight);
+      // var scrollPercent = (scrollTop) / (contentMath);
+      // var scrollPercentRounded = Math.round(scrollPercent*100);
+      // var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+      // $('#scrollpercent>span').html(scrollPercentMaxed);
+      let percent = Number(document.body.scrollTop) / Number(document.body.scrollHeight - window.innerHeight)
+      document.body.querySelector('.headband')
+        .style.width = `${percent * 100}%`
     });
 
     $top.on('click', function () {
