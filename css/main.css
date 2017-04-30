@@ -970,7 +970,7 @@ pre .javascript .function {
   position: fixed;
   left: 0;
   top: 0;
-  width: 1px;
+  width: 0;
   z-index: 9999;
 }
 .site-meta {
@@ -1701,7 +1701,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8f2bff;
+  background: #2af19f;
 }
 .links-of-blogroll {
   font-size: 13px;
