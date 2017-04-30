@@ -62,7 +62,6 @@ NexT.utils = NexT.$u = {
 
     $(window).on('scroll', function () {
       $top.toggleClass('back-to-top-on', window.pageYOffset > THRESHOLD);
-      /* cancle
       var scrollTop = $(window).scrollTop();
       var docHeight = $('#content').height();
       var winHeight = $(window).height();
@@ -71,9 +70,9 @@ NexT.utils = NexT.$u = {
       var scrollPercentRounded = Math.round(scrollPercent*100);
       var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
       $('#scrollpercent>span').html(scrollPercentMaxed);
-      */
-      let percent = Number(document.body.scrollTop) / Number(document.body.scrollHeight - window.innerHeight)
-      document.body.querySelector('.headband').style.width = `${percent * 100}%`
+
+      // let percent = Number(document.body.scrollTop) / Number(document.body.scrollHeight - window.innerHeight)
+      // document.body.querySelector('.headband').style.width = `${percent * 100}%`
     });
 
     $top.on('click', function () {
