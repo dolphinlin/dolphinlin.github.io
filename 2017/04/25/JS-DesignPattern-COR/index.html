@@ -97,7 +97,7 @@
 <meta property="og:url" content="https://dolphinlin.github.io/2017/04/25/JS-DesignPattern-COR/index.html">
 <meta property="og:site_name" content="Dolphin雜事筆記">
 <meta property="og:description" content="由於室友的物件導向軟體開發正在重修，想說有空可以去旁聽，順便複習一下以前所學的，正好正在教Chain of Responsibility，最近又因為正在學Angular，所以剛好有接觸TypeScript，所以就想說能不能應用上去，寫一寫發現真的還蠻有趣的，所以以後應該會慢慢地去實作其他的Pattern，順便讓我更增強自己的維護性。手上也有一本JavaScript Design Pattern這本">
-<meta property="og:updated_time" content="2017-04-30T05:44:52.000Z">
+<meta property="og:updated_time" content="2017-04-30T08:45:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 設計模型 - Chain of Responsibility">
 <meta name="twitter:description" content="由於室友的物件導向軟體開發正在重修，想說有空可以去旁聽，順便複習一下以前所學的，正好正在教Chain of Responsibility，最近又因為正在學Angular，所以剛好有接觸TypeScript，所以就想說能不能應用上去，寫一寫發現真的還蠻有趣的，所以以後應該會慢慢地去實作其他的Pattern，順便讓我更增強自己的維護性。手上也有一本JavaScript Design Pattern這本">
@@ -348,6 +348,7 @@
         <p>由於室友的物件導向軟體開發正在重修，想說有空可以去旁聽，順便複習一下以前所學的，正好正在教Chain of Responsibility，最近又因為正在學Angular，所以剛好有接觸TypeScript，所以就想說能不能應用上去，寫一寫發現真的還蠻有趣的，所以以後應該會慢慢地去實作其他的Pattern，順便讓我更增強自己的維護性。手上也有一本<em>JavaScript Design Pattern</em>這本書，所以這正是一個不錯的時機啊！</p>
 <h3 id="起手式"><a href="#起手式" class="headerlink" title="起手式"></a>起手式</h3><p>首先要先了解CoR這個Pattern是想要改善什麼東西！<br>想像一下，假如你需要去Handle一件事情時，他有很多種情況，那我們會怎麼寫呢？第一個直覺當然是if/switch，這是正常的，但是當可能處理事項有10/20/50種可能，那麼寫出來的code可能會跟阿婆的臭襪子一樣長，這就像是JS的Callback Hell，到後面你回頭要修改或是維護時，這時你會發現已經太晚了！所以我們可以把它拆解開來，將每個Handler拆開，將耦合降低，每個Handler只需要處理自己的能力範圍，如不能處理，就在繼續丟給下一個，一直丟到最後一個，這將會使程式更Flexible！</p>
 <p>舉例：販賣機找零錢，假設找零為97元，這樣需要找 50*1 + 10*4 + 5*1 + 1*2</p>
+<a id="more"></a>
 <h3 id="定義Interface"><a href="#定義Interface" class="headerlink" title="定義Interface"></a>定義Interface</h3><p>首先我們要定義一個規格出來，這一才能統一。</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">interface</span> Handler &#123;</div><div class="line">    next: Handler;</div><div class="line">    handle(params: <span class="built_in">any</span>): <span class="built_in">void</span>;</div><div class="line">    doNext?(params: <span class="built_in">any</span>): <span class="built_in">void</span>; <span class="comment">//unnecessary</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>定義好之後我們可以實作Concrete Handler。</p>
