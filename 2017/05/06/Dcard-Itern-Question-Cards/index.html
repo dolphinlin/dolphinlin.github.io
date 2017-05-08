@@ -1,0 +1,782 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="突然有一天看到Dcard有在徵暑假實習生，往下滑一滑居然看到要寫小作業，看了看題目覺得還蠻有趣的，就慢慢寫了幾題，裡面有前端也有後端，最後一題還是演算法，看都看不懂所以果斷放棄哈哈！ 這是第二題，題目是在說有6種情況（類似撲克牌，因為題目沒有寫得很清楚，所以不知道有沒有花色大小問題，我下面是忽略花色大小，只計算點數）  （同花順）Straight flush (five cards in sequ">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dcard Web Intern 題目 - Card">
+<meta property="og:url" content="https://dolphinlin.github.io/2017/05/06/Dcard-Itern-Question-Cards/index.html">
+<meta property="og:site_name" content="Dolphin雜事筆記">
+<meta property="og:description" content="突然有一天看到Dcard有在徵暑假實習生，往下滑一滑居然看到要寫小作業，看了看題目覺得還蠻有趣的，就慢慢寫了幾題，裡面有前端也有後端，最後一題還是演算法，看都看不懂所以果斷放棄哈哈！ 這是第二題，題目是在說有6種情況（類似撲克牌，因為題目沒有寫得很清楚，所以不知道有沒有花色大小問題，我下面是忽略花色大小，只計算點數）  （同花順）Straight flush (five cards in sequ">
+<meta property="og:updated_time" content="2017-05-08T02:58:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dcard Web Intern 題目 - Card">
+<meta name="twitter:description" content="突然有一天看到Dcard有在徵暑假實習生，往下滑一滑居然看到要寫小作業，看了看題目覺得還蠻有趣的，就慢慢寫了幾題，裡面有前端也有後端，最後一題還是演算法，看都看不懂所以果斷放棄哈哈！ 這是第二題，題目是在說有6種情況（類似撲克牌，因為題目沒有寫得很清楚，所以不知道有沒有花色大小問題，我下面是忽略花色大小，只計算點數）  （同花順）Straight flush (five cards in sequ">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dolphinlin.github.io/2017/05/06/Dcard-Itern-Question-Cards/"/>
+
+
+
+
+
+  <title>Dcard Web Intern 題目 - Card | Dolphin雜事筆記</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dolphin雜事筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Enjoy Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站點地圖
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://dolphinlin.github.io/2017/05/06/Dcard-Itern-Question-Cards/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DolphinLin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dolphin雜事筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Dcard Web Intern 題目 - Card
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-05-06T18:00:15+08:00">
+                2017-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/06/Dcard-Itern-Question-Cards/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/06/Dcard-Itern-Question-Cards/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>突然有一天看到Dcard有在徵暑假實習生，往下滑一滑居然看到要寫小作業，看了看題目覺得還蠻有趣的，就慢慢寫了幾題，裡面有前端也有後端，最後一題還是演算法，看都看不懂所以果斷放棄哈哈！</p>
+<p>這是第二題，題目是在說有6種情況（類似撲克牌，因為題目沒有寫得很清楚，所以不知道有沒有花色大小問題，我下面是忽略花色大小，只計算點數）</p>
+<ul>
+<li>（同花順）Straight flush (five cards in sequence, all of the same suit)</li>
+<li>（鐵支）Four of a kind (four cards of one rank and any other (unmatched) card)</li>
+<li>（葫蘆）Full house (three matching cards of one rank and two matching cards of another rank)</li>
+<li>（同花）Flush (five cards are of the same suit, but not in sequence)</li>
+<li>（順子）Straight (five cards of sequential rank in at least two different suits)</li>
+<li>（單隻）any unmatched card</li>
+</ul>
+<h2 id="起手式"><a href="#起手式" class="headerlink" title="起手式"></a>起手式</h2><p>因為是小作業，順便練練手感，所以嘗試使用TDD，所以會先寫測試，再來寫Code。<br>一開始先建立mock data，再開始寫測試。</p>
+<a id="more"></a>
+<h3 id="Mock-Deck"><a href="#Mock-Deck" class="headerlink" title="Mock Deck"></a>Mock Deck</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">v, s</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">value</span>: v,</div><div class="line">    <span class="attr">suit</span>: s</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> StraightFlush = [</div><div class="line">  f(<span class="number">9</span>, <span class="number">1</span>),</div><div class="line">  f(<span class="number">10</span>, <span class="number">1</span>),</div><div class="line">  f(<span class="number">11</span>, <span class="number">1</span>),</div><div class="line">  f(<span class="number">12</span>, <span class="number">1</span>),</div><div class="line">  f(<span class="number">13</span>, <span class="number">1</span>),</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">const</span> FourKind = [</div><div class="line">  f(<span class="number">3</span>, <span class="number">1</span>),</div><div class="line">  f(<span class="number">3</span>, <span class="number">2</span>),</div><div class="line">  f(<span class="number">3</span>, <span class="number">4</span>),</div><div class="line">  f(<span class="number">5</span>, <span class="number">1</span>),</div><div class="line">  f(<span class="number">3</span>, <span class="number">3</span>),</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">const</span> FullHouse = [</div><div class="line">  f(<span class="number">4</span>, <span class="number">1</span>),</div><div class="line">  f(<span class="number">4</span>, <span class="number">2</span>),</div><div class="line">  f(<span class="number">4</span>, <span class="number">4</span>),</div><div class="line">  f(<span class="number">10</span>, <span class="number">1</span>),</div><div class="line">  f(<span class="number">10</span>, <span class="number">3</span>),</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">const</span> Flush = [</div><div class="line">  f(<span class="number">5</span>, <span class="number">2</span>),</div><div class="line">  f(<span class="number">4</span>, <span class="number">2</span>),</div><div class="line">  f(<span class="number">6</span>, <span class="number">2</span>),</div><div class="line">  f(<span class="number">12</span>, <span class="number">2</span>),</div><div class="line">  f(<span class="number">10</span>, <span class="number">2</span>),</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">const</span> Straight = [</div><div class="line">  f(<span class="number">9</span>, <span class="number">2</span>),</div><div class="line">  f(<span class="number">8</span>, <span class="number">4</span>),</div><div class="line">  f(<span class="number">6</span>, <span class="number">2</span>),</div><div class="line">  f(<span class="number">7</span>, <span class="number">3</span>),</div><div class="line">  f(<span class="number">10</span>, <span class="number">1</span>),</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">const</span> Unmatch = [</div><div class="line">  f(<span class="number">9</span>, <span class="number">2</span>),</div><div class="line">  f(<span class="number">8</span>, <span class="number">3</span>),</div><div class="line">  f(<span class="number">10</span>, <span class="number">2</span>),</div><div class="line">  f(<span class="number">7</span>, <span class="number">3</span>),</div><div class="line">  f(<span class="number">10</span>, <span class="number">1</span>),</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">const</span> EmptyDeck = []</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DeckFactory</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line">    <span class="keyword">this</span>.resetPool()</div><div class="line">  &#125;</div><div class="line">  createRandomDeck() &#123;</div><div class="line">    <span class="keyword">let</span> deck = []</div><div class="line">    <span class="keyword">const</span> DECKNUM = <span class="number">5</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= DECKNUM; i++) &#123;</div><div class="line">      deck.push(<span class="keyword">this</span>.cardPool.splice(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="keyword">this</span>.cardPool.length) - <span class="number">1</span>, <span class="number">1</span>)[<span class="number">0</span>])</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> deck</div><div class="line">  &#125;</div><div class="line">  resetPool() &#123;</div><div class="line">    <span class="keyword">const</span> SUITNUM = <span class="number">4</span>, CARDNUM = <span class="number">13</span></div><div class="line">    <span class="keyword">this</span>.cardPool = []</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= SUITNUM; i++) &#123;</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt;= CARDNUM; j++) &#123;</div><div class="line">        <span class="keyword">this</span>.cardPool.push(&#123;</div><div class="line">          <span class="attr">value</span>: j,</div><div class="line">          <span class="attr">suit</span>: i</div><div class="line">        &#125;)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  StraightFlush,</div><div class="line">  FourKind,</div><div class="line">  FullHouse,</div><div class="line">  Flush,</div><div class="line">  EmptyDeck,</div><div class="line">  Straight,</div><div class="line">  Unmatch,</div><div class="line">  DeckFactory,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>就只是單純模擬牌型，所以應該不太有什麼需要解釋的。最後的DeckFactory，是用來隨機模擬牌組。</p>
+<h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3><p>預計會有一個牌組分析類別（DeckCompare）可以分析牌組或是比較大小。<br>然後分析每個牌組是否正確</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> chai = <span class="built_in">require</span>(<span class="string">'chai'</span>),</div><div class="line">    assert = chai.assert</div><div class="line"></div><div class="line"><span class="keyword">var</span> DeckCompare = <span class="built_in">require</span>(<span class="string">'./../index'</span>), <span class="comment">// 引入主程式</span></div><div class="line">    DeckConfig = <span class="built_in">require</span>(<span class="string">'./specialDeck'</span>) <span class="comment">// 引入模擬牌組</span></div><div class="line"></div><div class="line">describe(<span class="string">'DeckCompare'</span>, () =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> DC = <span class="keyword">new</span> DeckCompare()</div><div class="line">  describe(<span class="string">'constructor'</span>, () =&gt; &#123;</div><div class="line">    it(<span class="string">'should return Object'</span>, (done) =&gt; &#123;</div><div class="line">      assert.typeOf(DC, <span class="string">'object'</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line">    it(<span class="string">'All should return Function '</span>, (done) =&gt; &#123;</div><div class="line">      assert.typeOf(DC.analysis, <span class="string">'function'</span>)</div><div class="line">      assert.typeOf(DC.compare, <span class="string">'function'</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line">  &#125;)</div><div class="line">  describe(<span class="string">'#analysis()'</span>, () =&gt; &#123;</div><div class="line">    it(<span class="string">'StraightFlush'</span>, (done) =&gt; &#123;</div><div class="line">      assert.equal(DC.analysis(DeckConfig.StraightFlush), <span class="string">'StraightFlush'</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line">    it(<span class="string">'FourKind'</span>, (done) =&gt; &#123;</div><div class="line">      assert.equal(DC.analysis(DeckConfig.FourKind), <span class="string">'FourKind'</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line">    it(<span class="string">'FullHouse'</span>, (done) =&gt; &#123;</div><div class="line">      assert.equal(DC.analysis(DeckConfig.FullHouse), <span class="string">'FullHouse'</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line">    it(<span class="string">'Flush'</span>, (done) =&gt; &#123;</div><div class="line">      assert.equal(DC.analysis(DeckConfig.Flush), <span class="string">'Flush'</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line">    it(<span class="string">'Straight'</span>, (done) =&gt; &#123;</div><div class="line">      assert.equal(DC.analysis(DeckConfig.Straight), <span class="string">'Straight'</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line">    it(<span class="string">'Unmatch'</span>, (done) =&gt; &#123;</div><div class="line">      assert.equal(DC.analysis(DeckConfig.Unmatch), <span class="string">'Unmatch'</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line">    it(<span class="string">'EmptyDeck'</span>, (done) =&gt; &#123;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        assert.typeOf(DC.analysis(DeckConfig.EmptyDeck), <span class="string">'error'</span>)</div><div class="line">      &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">        done()</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  &#125;)</div><div class="line">  describe(<span class="string">'#compare()'</span>, () =&gt; &#123;</div><div class="line">    it(<span class="string">'StraightFlush &gt; FourKind'</span>, (done) =&gt; &#123;</div><div class="line">      assert.equal(DC.compare(DeckConfig.StraightFlush, DeckConfig.FourKind), <span class="number">1</span>)</div><div class="line">      assert.equal(DC.compare(DeckConfig.FourKind, DeckConfig.StraightFlush), <span class="number">2</span>)</div><div class="line">      assert.equal(DC.compare(DeckConfig.StraightFlush, DeckConfig.StraightFlush), <span class="number">3</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line">    it(<span class="string">'FourKind &gt; FullHouse'</span>, (done) =&gt; &#123;</div><div class="line">      assert.equal(DC.compare(DeckConfig.FourKind, DeckConfig.FullHouse), <span class="number">1</span>)</div><div class="line">      assert.equal(DC.compare(DeckConfig.FullHouse, DeckConfig.FourKind), <span class="number">2</span>)</div><div class="line">      assert.equal(DC.compare(DeckConfig.FourKind, DeckConfig.FourKind), <span class="number">3</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line">    it(<span class="string">'FullHouse &gt; Flush'</span>, (done) =&gt; &#123;</div><div class="line">      assert.equal(DC.compare(DeckConfig.FullHouse, DeckConfig.Flush), <span class="number">1</span>)</div><div class="line">      assert.equal(DC.compare(DeckConfig.Flush, DeckConfig.FullHouse), <span class="number">2</span>)</div><div class="line">      assert.equal(DC.compare(DeckConfig.FullHouse, DeckConfig.FullHouse), <span class="number">3</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">    <span class="comment">// 隨機牌組要用肉眼判斷，所以會列印出牌組和比較結果</span></div><div class="line">    <span class="comment">// 有一個notEqual是用來跟同花順比較的，因為mock deck裡面的同花順是最大（9-13同花順）</span></div><div class="line">    <span class="comment">// 所以絕對不可能會有第二副牌大於他的選項</span></div><div class="line">    <span class="comment">// 所以notEqual 2</span></div><div class="line">    it(<span class="string">'RandomDeck Test'</span>, (done) =&gt; &#123;</div><div class="line">      <span class="keyword">const</span> DeckFactory = <span class="keyword">new</span> DeckConfig.DeckFactory()</div><div class="line">      <span class="keyword">const</span> deck1 = DeckFactory.createRandomDeck(),</div><div class="line">            deck2 = DeckFactory.createRandomDeck()</div><div class="line">      <span class="built_in">console</span>.log(deck1)</div><div class="line">      <span class="built_in">console</span>.log(deck2)</div><div class="line">      <span class="built_in">console</span>.log(DC.compare(deck1, deck2))</div><div class="line">      assert.notEqual(DC.compare(DeckConfig.StraightFlush, deck1), <span class="number">2</span>)</div><div class="line">      done()</div><div class="line">    &#125;)</div><div class="line">  &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="開始動手做"><a href="#開始動手做" class="headerlink" title="開始動手做"></a>開始動手做</h3><p>我們先照著測試的內容把主程式exports出去！<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DeckCompare</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  analysis(d) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'Deck class'</span></div><div class="line">  &#125;</div><div class="line">  compare(d1, d2) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span> | <span class="number">2</span> | <span class="number">3</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = DeckCompare</div></pre></td></tr></table></figure></p>
+<p>這個題目可以運用之前的CoR Pattern來實作，這樣以後可隨時隨地更改、擴充Handler功能，也可以更改牌型大小的順序！</p>
+<p>Base Handler<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Handler</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line">    <span class="keyword">this</span>.value = <span class="number">0</span></div><div class="line">  &#125;</div><div class="line">  setNext(next) &#123;</div><div class="line">    <span class="comment">//  設置下一個Handler</span></div><div class="line">    next._setValue(<span class="keyword">this</span>.value + <span class="number">1</span>)</div><div class="line">    <span class="keyword">this</span>.next = next</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.next</div><div class="line">  &#125;</div><div class="line">  doNext(params) &#123;</div><div class="line">    <span class="comment">// 呼叫next</span></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.next) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.next.handle(params)</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">`deck unprocess`</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  handle(params) &#123;</div><div class="line">    <span class="comment">// 處理</span></div><div class="line">    <span class="keyword">if</span> (params.length !== <span class="number">5</span>) &#123;</div><div class="line">      <span class="comment">// 5張牌</span></div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'deck length error!'</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//排序過後會使我們的排比較好處理</span></div><div class="line">    params.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.value - b.value) <span class="comment">//sort deck</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.doNext(params)</div><div class="line">  &#125;</div><div class="line">  _setValue(v) &#123;</div><div class="line">    <span class="comment">//此value用來判斷順序，數字越大代表越深層，代表牌型越小。</span></div><div class="line">    <span class="keyword">this</span>.value = v</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="StraightFlush-同花順"><a href="#StraightFlush-同花順" class="headerlink" title="StraightFlush - 同花順"></a>StraightFlush - 同花順</h3><p>同時都是同樣花色並且是順子！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StraightFlushHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</div><div class="line">  handle(params) &#123;</div><div class="line"></div><div class="line">    <span class="keyword">const</span> sameSuit = params.every(<span class="function">(<span class="params">card, index, array</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> card.suit === array[<span class="number">0</span>].suit</div><div class="line">    &#125;)</div><div class="line">    <span class="comment">// 判斷同樣花色</span></div><div class="line">    <span class="comment">// 在這裡可以同時判斷順子 同花</span></div><div class="line">    <span class="comment">// 可以直接return 但是我這裡沒有做 只有單純判斷是否為同花順</span></div><div class="line">    <span class="keyword">if</span> (sameSuit) &#123;</div><div class="line">      <span class="comment">// 因為有排序過後 所以可以直接every去做檢查</span></div><div class="line">      <span class="keyword">const</span> sequence = params.every(<span class="function">(<span class="params">card, index, array</span>) =&gt;</span> &#123;</div><div class="line">        <span class="comment">// 當前與下一張看是不是 差1</span></div><div class="line">        <span class="keyword">return</span> card.value === array[<span class="number">0</span>].value + index</div><div class="line">      &#125;)</div><div class="line">      <span class="keyword">if</span> (sequence) &#123;</div><div class="line">        <span class="keyword">const</span> sum = params.reduce(<span class="function">(<span class="params">p, c</span>) =&gt;</span> p + c.value, <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.value + sum * <span class="number">0.01</span>&#125;</span> - StraightFlush`</span></div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.doNext(params)</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.doNext(params)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="FourKind-鐵支"><a href="#FourKind-鐵支" class="headerlink" title="FourKind - 鐵支"></a>FourKind - 鐵支</h3><p>4張相同數字搭配一張雜牌。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FourKindHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</div><div class="line">  handle(params) &#123;</div><div class="line">    <span class="comment">//first handle sorted</span></div><div class="line"></div><div class="line">    <span class="comment">// 比較 0 - 1~4</span></div><div class="line">    <span class="keyword">const</span> tmp1 = params.slice(<span class="number">0</span>, <span class="number">4</span>).every(<span class="function">(<span class="params">card, index, array</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> card.value === array[index - <span class="number">1</span> &lt; <span class="number">0</span> ? <span class="number">0</span> : index - <span class="number">1</span>].value</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">    <span class="comment">// 比較 0~3 - 4</span></div><div class="line">    <span class="keyword">const</span> tmp2 = params.slice(<span class="number">1</span>).every(<span class="function">(<span class="params">card, index, array</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> card.value === array[index - <span class="number">1</span> &lt; <span class="number">0</span> ? <span class="number">0</span> : index - <span class="number">1</span>].value</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ((tmp1 &amp;&amp; (params[<span class="number">0</span>].value !== params[<span class="number">4</span>].value)) || (tmp2  &amp;&amp; (params[<span class="number">0</span>].value !== params[<span class="number">1</span>].value))) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.value&#125;</span> - FourKind`</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.doNext(params)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="FullHouse-葫蘆"><a href="#FullHouse-葫蘆" class="headerlink" title="FullHouse - 葫蘆"></a>FullHouse - 葫蘆</h3><p>3張相同配2張相同。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FullHouseHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</div><div class="line">  handle(params) &#123;</div><div class="line">    <span class="comment">//first handle sorted</span></div><div class="line"></div><div class="line">    <span class="comment">// 判斷 0~2相同 &amp;&amp; 3.4 相同</span></div><div class="line">    <span class="keyword">const</span> tmp1 = params.slice(<span class="number">0</span>, <span class="number">3</span>).every(<span class="function">(<span class="params">card, index, array</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> card.value === array[index - <span class="number">1</span> &lt; <span class="number">0</span> ? <span class="number">0</span> : index - <span class="number">1</span>].value</div><div class="line">    &#125;) &amp;&amp; params[<span class="number">3</span>].value === params[<span class="number">4</span>].value</div><div class="line"></div><div class="line">    <span class="comment">// 判斷 0.1相同 &amp;&amp; 2~4 相同</span></div><div class="line">    <span class="keyword">const</span> tmp2 = params.slice(<span class="number">2</span>).every(<span class="function">(<span class="params">card, index, array</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> card.value === array[index - <span class="number">1</span> &lt; <span class="number">0</span> ? <span class="number">0</span> : index - <span class="number">1</span>].value</div><div class="line">    &#125;) &amp;&amp; params[<span class="number">0</span>].value === params[<span class="number">1</span>].value</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (tmp1 || tmp2) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.value&#125;</span> - FullHouse`</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.doNext(params)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Flush-同花"><a href="#Flush-同花" class="headerlink" title="Flush - 同花"></a>Flush - 同花</h3><p>5張牌都同一個花色</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlushHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</div><div class="line">  handle(params) &#123;</div><div class="line"></div><div class="line">    <span class="comment">// 檢查是否所有花色都與第一張相同</span></div><div class="line">    <span class="keyword">const</span> sameSuit = params.every(<span class="function">(<span class="params">card, index, array</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> card.suit === array[<span class="number">0</span>].suit</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (sameSuit) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.value&#125;</span> - Flush`</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.doNext(params)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Straight-順子"><a href="#Straight-順子" class="headerlink" title="Straight - 順子"></a>Straight - 順子</h3><p>所有牌都是有順序的！<br>（沒有檢查是不是同花順是因為前面第一個就handler就檢查過了）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StraightHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</div><div class="line">  handle(params) &#123;</div><div class="line">    <span class="comment">//first handle sorted</span></div><div class="line"></div><div class="line">    <span class="keyword">const</span> sequence = params.every(<span class="function">(<span class="params">card, index, array</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> card.value === array[<span class="number">0</span>].value + index</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (sequence) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.value + params[<span class="number">4</span>].value * <span class="number">0.01</span>&#125;</span> - Straight`</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.doNext(params)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Unmatch-雜牌"><a href="#Unmatch-雜牌" class="headerlink" title="Unmatch - 雜牌"></a>Unmatch - 雜牌</h3><p>這個就是最後一個了，前面都沒有的就是這個了！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnmatchHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</div><div class="line">  handle(params) &#123;</div><div class="line">    <span class="keyword">const</span> max = params.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.max(a, b.value);</div><div class="line">    &#125;, <span class="number">0</span>)</div><div class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.value + max * <span class="number">0.01</span>&#125;</span> - Unmatch`</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="DeckCompare"><a href="#DeckCompare" class="headerlink" title="DeckCompare"></a>DeckCompare</h3><p>所有的handler都做好了，這樣就可以開始把它們串起來了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DeckCompare</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line">    <span class="keyword">this</span>.handler = <span class="keyword">new</span> Handler()</div><div class="line">    <span class="keyword">const</span> h1 = <span class="keyword">new</span> StraightFlushHandler(),</div><div class="line">        h2 = <span class="keyword">new</span> FourKindHandler(),</div><div class="line">        h3 = <span class="keyword">new</span> FullHouseHandler(),</div><div class="line">        h4 = <span class="keyword">new</span> FlushHandler(),</div><div class="line">        h5 = <span class="keyword">new</span> StraightHandler(),</div><div class="line">        h = <span class="keyword">new</span> UnmatchHandler()</div><div class="line">        <span class="comment">// u can change the handler sequence, and also add new handler</span></div><div class="line">        <span class="comment">// 在這邊可以更改順序或是新增想要的處理器</span></div><div class="line"></div><div class="line">    <span class="keyword">this</span>.handler.setNext(h1).setNext(h2).setNext(h3).setNext(h4).setNext(h5).setNext(h)</div><div class="line">  &#125;</div><div class="line">  analysis(d) &#123;</div><div class="line">    <span class="comment">// 分析牌組</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.handler.handle(d).split(<span class="string">' - '</span>)[<span class="number">1</span>]</div><div class="line">  &#125;</div><div class="line">  compare(d1, d2) &#123;</div><div class="line">    <span class="comment">// 比較牌組</span></div><div class="line"></div><div class="line">    <span class="keyword">const</span> d1value = <span class="keyword">this</span>.handler.handle(d1),</div><div class="line">          d2value = <span class="keyword">this</span>.handler.handle(d2)</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">const</span> d1valueNum = +d1value.split(<span class="string">' - '</span>)[<span class="number">0</span>],</div><div class="line">          d2valueNum = +d2value.split(<span class="string">' - '</span>)[<span class="number">0</span>]</div><div class="line">    <span class="keyword">if</span> (d1valueNum !== <span class="number">0</span> &amp;&amp; d2valueNum !== <span class="number">0</span>) &#123;</div><div class="line">      <span class="keyword">if</span> (<span class="built_in">Math</span>.floor(d1valueNum) &lt; <span class="built_in">Math</span>.floor(d2valueNum)) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">Math</span>.floor(d1valueNum) === <span class="built_in">Math</span>.floor(d2valueNum)) &#123;</div><div class="line">        <span class="keyword">if</span> ((d1valueNum % <span class="number">1</span>) === (d2valueNum % <span class="number">1</span>)) <span class="keyword">return</span> <span class="number">3</span></div><div class="line">        <span class="keyword">return</span> (d1valueNum % <span class="number">1</span>) &gt; (d2valueNum % <span class="number">1</span>) ? <span class="number">1</span> : <span class="number">2</span></div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">2</span></div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'deck unprocess'</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>雖然可以直接用switch做出來，但是就像我之前在介紹<a href="https://dolphinlin.github.io/2017/04/25/JS-DesignPattern-COR/">CoR Pattern</a>的時候說的一樣，假如要再新增功能或是修改順序，那個程式將會變得很難讀，也沒有彈性！</p>
+<p>假如有任何錯誤歡迎提出來，因為還是牛刀小試，多多少少都有Bug！哈哈哈</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/29/JS-DesignPattern-Iterator/" rel="next" title="JavaScript 設計模型 - Iterator">
+                <i class="fa fa-chevron-left"></i> JavaScript 設計模型 - Iterator
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="DolphinLin" />
+          <p class="site-author-name" itemprop="name">DolphinLin</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/dolphinlin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/dolphinlinn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起手式"><span class="nav-number">1.</span> <span class="nav-text">起手式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mock-Deck"><span class="nav-number">1.1.</span> <span class="nav-text">Mock Deck</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Test"><span class="nav-number">1.2.</span> <span class="nav-text">Test</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#開始動手做"><span class="nav-number">1.3.</span> <span class="nav-text">開始動手做</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StraightFlush-同花順"><span class="nav-number">1.4.</span> <span class="nav-text">StraightFlush - 同花順</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FourKind-鐵支"><span class="nav-number">1.5.</span> <span class="nav-text">FourKind - 鐵支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FullHouse-葫蘆"><span class="nav-number">1.6.</span> <span class="nav-text">FullHouse - 葫蘆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flush-同花"><span class="nav-number">1.7.</span> <span class="nav-text">Flush - 同花</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Straight-順子"><span class="nav-number">1.8.</span> <span class="nav-text">Straight - 順子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unmatch-雜牌"><span class="nav-number">1.9.</span> <span class="nav-text">Unmatch - 雜牌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DeckCompare"><span class="nav-number">1.10.</span> <span class="nav-text">DeckCompare</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#結論"><span class="nav-number">1.11.</span> <span class="nav-text">結論</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DolphinLin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://dolphinlin.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://dolphinlin.github.io/2017/05/06/Dcard-Itern-Question-Cards/';
+          this.page.identifier = '2017/05/06/Dcard-Itern-Question-Cards/';
+          this.page.title = 'Dcard Web Intern 題目 - Card';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://dolphinlin.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
